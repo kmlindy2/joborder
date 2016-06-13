@@ -1,8 +1,10 @@
 # Joborder
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/joborder`. To experiment with that code, run `bin/console` for an interactive prompt.
+Given a list of jobs in the format job => dependency, return a string representing the jobs in order such that all dependencies are met.
 
-TODO: Delete this and the text above, and describe your gem
+Jobs cannot be self dependent.
+
+Dependencies cannot be circular (i.e. "a => b, b => c, c => a")
 
 ## Installation
 
@@ -22,7 +24,8 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+joborder = Joborder::Joborder.new
+ordered_jobs = joborder.listjobs("a =>, b => c, c => f, d => a, e => b, f => ")  # => "afcbde"
 
 ## Development
 
