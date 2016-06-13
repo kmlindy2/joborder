@@ -18,7 +18,7 @@ module Joborder
         # Report error if job is self dependent
         #
         return "Self Dependent job '#{job}'" if dep == job
-
+        
         #
         # add job if not already in the list (as a
         # dependency of another job)
@@ -30,6 +30,14 @@ module Joborder
         # it's not in the original list
         #
         if dep
+
+          #
+          # Report an error if dependencies are circular
+          #
+          if ordered_jobs.include? dep
+            return "Circular dependencies!" if ordered_jobs.index(job) < ordered_jobs.index(dep)
+          end
+
           
           ordered_jobs.insert(ordered_jobs.index(job), dep) if !ordered_jobs.include? dep
         end

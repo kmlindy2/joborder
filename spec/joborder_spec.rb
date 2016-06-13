@@ -29,4 +29,10 @@ describe Joborder do
     expect(subject.listjobs("a => c, b => b, c =>")).to eq("Self Dependent job 'b'")
   end
 
+  it 'reports an error if dependencies are cirular' do
+    expect(subject.listjobs("a => b")).to eq("ba")
+    expect(subject.listjobs("a => b, b => a")).to eq("Circular dependencies!")
+    expect(subject.listjobs("a =>, b => c, c => f, d => a, e => , f => b")).to eq("Circular dependencies!")
+  end  
+
 end
