@@ -24,4 +24,9 @@ describe Joborder do
     expect(subject.listjobs("a =>, b => c, c => f, d => a, e => b, f => ")).to eq("afcbde")
   end  
 
+  it 'resports an error if a job is dependent on itself' do
+    expect(subject.listjobs("c => c")).to eq("Self Dependent job 'c'")
+    expect(subject.listjobs("a => c, b => b, c =>")).to eq("Self Dependent job 'b'")
+  end
+
 end
