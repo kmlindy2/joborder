@@ -17,4 +17,11 @@ describe Joborder do
     expect(subject.listjobs("a =>, b => , c=>")).to eq("abc")
   end
 
+  it 'injects dependency before job' do
+    expect(subject.listjobs("a => b")).to eq("ba")
+    expect(subject.listjobs("a =>, b => c, c =>")).to eq("acb")
+    expect(subject.listjobs("a =>, b => c, c =>a")).to eq("acb")
+    expect(subject.listjobs("a =>, b => c, c => f, d => a, e => b, f => ")).to eq("afcbde")
+  end  
+
 end
