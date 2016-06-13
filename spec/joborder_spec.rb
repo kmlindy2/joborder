@@ -10,4 +10,11 @@ describe Joborder do
   it 'given an empty string, return an empty sequence' do
     expect(subject.listjobs()).to eq("")
   end
+
+  it 'adds any job with no dependcies to the list of ordered jobs' do
+    expect(subject.listjobs("a =>")).to eq("a")
+    expect(subject.listjobs("a =>, b => ")).to eq("ab")
+    expect(subject.listjobs("a =>, b => , c=>")).to eq("abc")
+  end
+
 end

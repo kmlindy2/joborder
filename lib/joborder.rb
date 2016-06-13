@@ -16,6 +16,17 @@ module Joborder
     #      
     def listjobs(jobs="")
       ordered_jobs = ""
+      
+      jobs.split(/\s*,\s*/).each do |job_and_dep|
+        job, dep = job_and_dep.split(/\s*=>\s*/)
+        
+        #
+        # add job if not already in the list (as a
+        # dependency of another job)
+        #
+        ordered_jobs << job if !ordered_jobs.include? job
+      end
+      
       ordered_jobs
     end
     
