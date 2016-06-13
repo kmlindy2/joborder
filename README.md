@@ -24,8 +24,8 @@ Or install it yourself as:
 
 ## Usage
 
-joborder = Joborder::Joborder.new
-ordered_jobs = joborder.listjobs("a =>, b => c, c => f, d => a, e => b, f => ")  # => "afcbde"
+    joborder = Joborder::Joborder.new
+    ordered_jobs = joborder.listjobs("a =>, b => c, c => f, d => a, e => b, f => ")  # => "afcbde"
 
 ## Development
 
