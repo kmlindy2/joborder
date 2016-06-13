@@ -5,7 +5,9 @@ describe Joborder do
     expect(Joborder::VERSION).not_to be nil
   end
 
-  it 'does something useful' do
-    expect(false).to eq(true)
+  subject{ Joborder::Joborder.new }
+
+  it 'given an empty string, return an empty sequence' do
+    expect(subject.listjobs()).to eq("")
   end
 end
